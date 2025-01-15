@@ -17,7 +17,7 @@ export class FetchProductService {
 
   fetchProductByIds(productIds: String[]) {
     return this.http
-      .post<any>('http://localhost:8000/api/products/products/by-id', {
+      .post<any>('https://back-duos.onrender.com/api/products/products/by-id', {
         products_ids: productIds,
       })
       .pipe(
@@ -36,7 +36,7 @@ export class FetchProductService {
 
   fetchAllProducts() {
     return this.http
-      .get<ApiGetResponse>('http://localhost:8000/api/products')
+      .get<ApiGetResponse>('https://back-duos.onrender.com/api/products')
       .pipe(
         catchError((error) => {
           // Log the error or handle it
@@ -53,7 +53,7 @@ export class FetchProductService {
 
   createCart(cartItems: CartItems[], userId: string) {
     return this.http
-      .post<CartApiResponse>(`http://localhost:8000/api/cart/${userId}`, {
+      .post<CartApiResponse>(`https://back-duos.onrender.com/api/cart/${userId}`, {
         items: cartItems,
       })
       .pipe(
@@ -72,7 +72,7 @@ export class FetchProductService {
 
   getCartItems(userId: string) {
     return this.http
-      .get<PopulatedCartData>(`http://localhost:8000/api/cart/${userId}`)
+      .get<PopulatedCartData>(`https://back-duos.onrender.com/api/cart/${userId}`)
       .pipe(
         catchError((error) => {
           // Log the error or handle it
@@ -89,7 +89,7 @@ export class FetchProductService {
 
   createOrder(cartId: string, userId: string) {
     return this.http
-      .post<OrderApiResponse>(`http://localhost:8000/api/order/${userId}`, {
+      .post<OrderApiResponse>(`https://back-duos.onrender.com/api/order/${userId}`, {
         cartId,
       })
       .pipe(
