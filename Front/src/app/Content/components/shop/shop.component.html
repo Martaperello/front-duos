@@ -1,0 +1,91 @@
+<div class="container-fluid pt-5">
+  <div class="container">
+    <div class="products-grid__section-one">
+      <div class="wrapper" *ngFor="let product of productsData; let i = index">
+        <form class="wrapper__form" [formGroup]="productForms[i]">
+          <div class="container_card">
+            <div
+              class="top"
+              [style.backgroundImage]="
+                'url(http://localhost:8000/images/products/' +
+                product.image +
+                ')'
+              "
+            >
+              <div class="top__quantity-button">
+                <div class="quantity">
+                  <button
+                    type="button"
+                    #minusButton
+                    class="minus"
+                    aria-label="Decrease"
+                  >
+                    &minus;
+                  </button>
+                  <input
+                    #inputBox
+                    type="number"
+                    class="input-box"
+                    value="1"
+                    min="1"
+                    max="{{ product.stock }}"
+                  />
+                  <button
+                    type="button"
+                    #plusButton
+                    class="plus"
+                    aria-label="Increase"
+                  >
+                    &plus;
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="left">
+                <div class="details">
+                  <h3>{{ product.title }}</h3>
+                  <p>{{ product.price }}€</p>
+                </div>
+                <div class="buy" #buyButton  (click)="addToCart(i)">
+                  <i class="material-icons">add_shopping_cart</i>
+                </div>
+              </div>
+              <div class="right">
+                <div class="done"><i class="material-icons">done</i></div>
+                <div class="details">
+                  <h3>{{ product.title }}</h3>
+                  <p>Added to your cart</p>
+                </div>
+                <div class="remove" #removeButton (click)="removeProduct(i, $event)">
+                  <i class="material-icons">clear</i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="inside">
+          <div class="icon"><i class="material-icons">info_outline</i></div>
+          <div class="contents">
+            <div class="duos__attribute-container">
+              <p>{{ product.description }}</p>
+            </div>
+            <table
+              *ngFor="let ingredient of product.ingredients"
+              class="duo_ingredients-container"
+            >
+              <tr>
+                <th>Ingrediente</th>
+                <th>Cantidad</th>
+              </tr>
+              <tr>
+                <td>{{ ingredient.name }}</td>
+                <td>{{ ingredient.quantity }} {{ ingredient.unit }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

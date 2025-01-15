@@ -1,0 +1,193 @@
+<div class="login__block__main-container">
+  <div
+    class="container"
+    id="container"
+    [ngClass]="isRightPanelActive ? 'right-panel-active' : ''"
+  >
+    <div class="form-container sign-up-container">
+      <form [formGroup]="registerForm" (ngSubmit)="handleRegisterUser()">
+        <h1>Create Account</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your email for registration</span>
+        <input type="text" placeholder="Name" formControlName="register_name" />
+        <div
+          class="form-label text-danger"
+          *ngIf=" registerForm.get('register_name')?.dirty && registerForm.get('register_name')?.errors?.['required']"
+        >
+          *Name is required
+        </div>
+        <input
+          type="email"
+          placeholder="Email"
+          formControlName="register_email"
+        />
+        <div
+          *ngIf="
+            registerForm.get('register_email')?.dirty &&
+            registerForm.get('register_email')?.invalid
+          "
+        >
+          <div
+            class="form-label text-danger"
+            *ngIf=" registerForm.get('register_email')?.errors?.['required']"
+          >
+            *Email required
+          </div>
+        </div>
+        <div
+          class="form-label text-danger"
+          *ngIf=" registerForm.get('register_email')?.errors?.['email']"
+        >
+          *It is not a valid Email
+        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="register_password"
+        />
+        <div
+          *ngIf="
+            registerForm.get('register_password')?.dirty &&
+            registerForm.get('register_password')?.invalid
+          "
+        >
+          <div
+            class="form-label text-danger"
+            *ngIf="registerForm.get('register_password')?.errors?.['required']"
+          >
+            *Password required
+          </div>
+        </div>
+        <div
+          class="form-label text-danger"
+          *ngIf="registerForm.get('register_password')?.errors?.['minlength']"
+        >
+          *Password must be 8 characters long
+        </div>
+        <div
+          class="form-label text-danger"
+          *ngIf="registerForm.get('register_password')?.errors?.['pattern']"
+        >
+          *Password must contain at least one uppercase letter, one special
+          character, and no spaces
+        </div>
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          formControlName="password_confirm"
+        />
+        <div
+          *ngIf="
+            registerForm.hasError('mismatch') &&
+            registerForm.get('password_confirm')?.touched
+          "
+        >
+          Passwords do not match.
+        </div>
+        <button
+          class="duos-register__button"
+          type="submit"
+          [disabled]="registerForm.invalid"
+        >
+          Sign Up
+        </button>
+      </form>
+    </div>
+    <div class="form-container sign-in-container">
+      <form [formGroup]="loginForm" (ngSubmit)="handleLoginUser()">
+        <h1>Sign in</h1>
+        <div class="social-container">
+          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <span>or use your account</span>
+        <input type="email" placeholder="Email" formControlName="email" />
+        <div
+          *ngIf="
+            loginForm.get('email')?.dirty && loginForm.get('email')?.invalid
+          "
+        >
+          <div
+            class="form-label text-danger"
+            *ngIf=" loginForm.get('email')?.errors?.['required']"
+          >
+            *Email required
+          </div>
+        </div>
+        <div
+          class="form-label text-danger"
+          *ngIf=" loginForm.get('email')?.errors?.['email']"
+        >
+          *It is not a valid Email
+        </div>
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <div
+          *ngIf="
+            loginForm.get('password')?.dirty &&
+            loginForm.get('password')?.invalid
+          "
+        >
+          <div
+            class="form-label text-danger"
+            *ngIf=" loginForm.get('password')?.errors?.['required']"
+          >
+            *Password required
+          </div>
+        </div>
+        <div
+          class="form-label text-danger"
+          *ngIf=" loginForm.get('password')?.errors?.['minlength']"
+        >
+          *Password must be 8 characters long
+        </div>
+        <div
+          class="form-label text-danger"
+          *ngIf=" loginForm.get('password')?.hasError('pattern') && ! loginForm.get('password')?.errors?.['required'] && !loginForm.get('password')?.errors?.['minlength']"
+        >
+          *Password must contain at least one capital letter
+        </div>
+        <div
+          class="form-label text-danger"
+          *ngIf=" loginForm.get('password')?.hasError('pattern') && ! loginForm.get('password')?.errors?.['required'] && !loginForm.get('password')?.errors?.['minlength']"
+        >
+          *Password must contain at least one special character
+        </div>
+        <div
+          class="form-label text-danger"
+          *ngIf=" loginForm.get('password')?.hasError('pattern') && ! loginForm.get('password')?.errors?.['required'] && !loginForm.get('password')?.errors?.['minlength']"
+        >
+          *Password must not contain any white spaces
+        </div>
+        <a href="#">Forgot your password?</a>
+        <button>Sign In</button>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-left">
+          <h1>Welcome Back!</h1>
+          <p>To keep connected with us please login with your personal info</p>
+          <button class="ghost" id="signIn" (click)="onSignInClick()">
+            Sign In
+          </button>
+        </div>
+        <div class="overlay-panel overlay-right">
+          <h1>Hello, Friend!</h1>
+          <p>Enter your personal details and start journey with us</p>
+          <button class="ghost" id="signUp" (click)="onSignUpClick()">
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

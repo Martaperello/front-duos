@@ -1,0 +1,68 @@
+#main_menu_duos89 .container {
+  display: flex;
+  flex: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.duos__logo-container img {
+  max-width: 12rem;
+}
+
+.duos__menu-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.duos__menu-container--element a {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.duos__menu-container--element .material-icons {
+  font-size: 2.6rem;
+  line-height: 2;
+}
+
+.duos__menu-container--element .duos__normal-link {
+  position: relative;
+}
+.duos__menu-container--element .duos__normal-link::after {
+  position: absolute;
+  content: "";
+  bottom: -3px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background-color: #be792b;
+  transition: all 0.4s ease-in;
+}
+
+.duos__menu-container--element .duos__normal-link:hover::after {
+  width: 100%;
+  transition: all 0.4s ease-out;
+}
+
+.duos__menu-container--element .duos__normal-link.active::after {
+  width: 100%;
+  transition: all 0.4s ease-out;
+}
+
+@media (max-width: 540px) {
+  .duos__menu-container {
+    gap: 1.4rem;
+  }
+  .duos__menu-container--element a {
+    font-size: 1.3rem;
+  }
+ 
+  .duos__logo-container img {
+    max-width: 5rem;
+}
+
+.duos__menu-container--element  .material-icons {
+  font-size: 1.6rem;
+}
+}

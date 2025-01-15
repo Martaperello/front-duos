@@ -1,0 +1,229 @@
+<div class="container-fluid pb-5" id="main_cart_duos89">
+  <div class="container">
+    <main class="container">
+      <h1 class="heading">
+        <!-- <ion-icon name="cart-outline"></ion-icon> Shopping Cart -->
+        <i class="material-icons home__shopping-cart">shopping_cart</i> Shopping
+        Cart
+      </h1>
+
+      <div class="item-flex">
+        <section class="checkout">
+          <h2 class="section-heading">Payment Details</h2>
+
+          <div class="payment-form">
+            <div class="payment-method">
+              <button class="method selected">
+                <!-- <ion-icon name="card"></ion-icon> -->
+                <i class="material-icons home__credit-cart">credit_card</i>
+                <span>Credit Card</span>
+                <i class="material-icons home__check-mark">check_circle</i>
+                <!-- <ion-icon
+                  name="checkmark-circle"
+                  class="checkmark fill"
+                ></ion-icon> -->
+              </button>
+
+              <button class="method">
+                <!-- <ion-icon name="logo-paypal"></ion-icon> -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="ionicon s-ion-icon cart__pay-pal"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    d="M424.81 148.79c-.43 2.76-.93 5.58-1.49 8.48-19.17 98-84.76 131.8-168.54 131.8h-42.65a20.67 20.67 0 00-20.47 17.46l-21.84 137.84-6.18 39.07a10.86 10.86 0 009.07 12.42 10.72 10.72 0 001.7.13h75.65a18.18 18.18 0 0018-15.27l.74-3.83 14.24-90 .91-4.94a18.16 18.16 0 0118-15.3h11.31c73.3 0 130.67-29.62 147.44-115.32 7-35.8 3.38-65.69-15.16-86.72a72.27 72.27 0 00-20.73-15.82z"
+                  ></path>
+                  <path
+                    d="M385.52 51.09C363.84 26.52 324.71 16 274.63 16H129.25a20.75 20.75 0 00-20.54 17.48l-60.55 382a12.43 12.43 0 0010.39 14.22 12.58 12.58 0 001.94.15h89.76l22.54-142.29-.7 4.46a20.67 20.67 0 0120.47-17.46h42.65c83.77 0 149.36-33.86 168.54-131.8.57-2.9 1.05-5.72 1.49-8.48 5.7-36.22-.05-60.87-19.72-83.19z"
+                  ></path>
+                </svg>
+
+                <span>PayPal</span>
+
+                <!-- <ion-icon
+                  name="checkmark-circle-outline"
+                  class="checkmark"
+                ></ion-icon> -->
+                <i class="material-icons home__check-mark">check_circle</i>
+              </button>
+            </div>
+
+            <form action="#">
+              <div class="cardholder-name">
+                <label for="cardholder-name" class="label-default"
+                  >Cardholder Name</label
+                >
+                <input
+                  type="text"
+                  id="cardholder-name"
+                  class="input-default"
+                  name="cardholder-name"
+                />
+              </div>
+
+              <div class="card-number">
+                <label for="card-number" class="label-default"
+                  >Card Number</label
+                >
+                <input
+                  type="number"
+                  id="card-number"
+                  class="input-default"
+                  name="card-number"
+                />
+              </div>
+
+              <div class="input-flex">
+                <div class="expire-date">
+                  <label for="expire-date" class="label-default"
+                    >Expiration Date</label
+                  >
+
+                  <div class="input-flex">
+                    <input
+                      type="number"
+                      name="day"
+                      id="expire-date"
+                      class="input-default"
+                      placeholder="31"
+                      min="1"
+                      max="31"
+                    />
+                    /
+                    <input
+                      type="number"
+                      name="month"
+                      id="expire-date"
+                      class="input-default"
+                      placeholder="12"
+                      min="1"
+                      max="12"
+                    />
+                  </div>
+                </div>
+
+                <div class="cvv">
+                  <label for="cvv" class="label-default">CVV</label>
+                  <input
+                    type="number"
+                    id="cvv"
+                    class="input-default"
+                    name="cvv"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="btn-wrapper">
+            <button class="btn btn-primary" (click)="createOrder()">
+              <b>Pay</b>  <span id="payAmount">{{ cartTotal }}</span> €
+            </button>
+          </div>
+        </section>
+
+        <section class="cart">
+          <div class="cart-item-box">
+            <h2 class="section-heading">Order Summary</h2>
+
+            <div
+              class="product-card"
+              *ngFor="let cartItem of productsData; let i = index"
+            >
+              <div class="card">
+                <div class="img-box">
+                  <img
+                    [src]="
+                      'http://localhost:8000/images/products/' +
+                      cartItem.product.image
+                    "
+                    alt="green-tomatoes"
+                    width="80px"
+                    class="product-img"
+                  />
+                </div>
+
+                <div class="detail">
+                  <h4 class="product-name">{{ cartItem.product.title }}</h4>
+
+                  <div class="wrapper">
+                    <div class="top__quantity-button">
+                      <form class="wrapper__form" [formGroup]="productForms[i]">
+                      <div class="quantity">
+                        <button
+                          type="button"
+                          #minusButton
+                          class="minus"
+                          aria-label="Decrease"
+                        >
+                          &minus;
+                        </button>
+                        <input
+                          #inputBox
+                          type="number"
+                          class="input-box"
+                          value="{{ cartItem.quantity }}"
+                          min="1"
+                          max="{{ cartItem.product.stock }}"
+                        />
+                        <button
+                          type="button"
+                          #plusButton
+                          class="plus"
+                          aria-label="Increase"
+                        >
+                          &plus;
+                        </button>
+                      </div>
+                    </form>
+                    </div>
+
+                    <div class="price">
+                      <span class="price"
+                        >{{ cartItem.product.price }} <strong>€</strong></span
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <button class="product-close-btn" class="remove" #removeButton (click)="removeProduct(i, $event)">
+                  <!-- <ion-icon name="close-outline"></ion-icon> -->
+                  <i class="material-icons cart__close-icon"> close</i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="wrapper">
+            <div class="discount-token">
+              <label for="discount-token" class="label-default"
+                >Gift Card/Discount Code</label
+              >
+
+              <div class="wrapper-flex">
+                <input
+                  type="text"
+                  name="discount-token"
+                  id="discount-token"
+                  class="input-default"
+                />
+
+                <button class="btn btn-outline">Apply</button>
+              </div>
+            </div>
+
+            <div class="amount">
+              <div class="total">
+                <span>Total</span>
+                <span
+                  > <span id="total">{{ cartTotal }}</span>€</span
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
