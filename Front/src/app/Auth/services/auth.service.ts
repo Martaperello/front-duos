@@ -25,7 +25,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http
-      .post<AuthResponseData>('http://localhost:8000/api/users/login', {
+      .post<AuthResponseData>('https://back-duos.onrender.com/api/users/login', {
         email,
         password,
       })
@@ -39,7 +39,7 @@ export class AuthService {
     passwordConfirm: string
   ) {
     return this.http
-      .post<AuthResponseData>('http://localhost:8000/api/users/signup', {
+      .post<AuthResponseData>('https://back-duos.onrender.com/api/users/signup', {
         name,
         email,
         password,
