@@ -9,15 +9,6 @@ import { FetchProductService } from '../../Services/fetch-data.service';
 })
 export class HomeComponent implements OnInit {
   productsData: Product[] | [];
-  /************Ids de los productos a destacar en la pagina de inicio */
-  productsIds = [
-    '6733aeef69db33c1ba87f459',
-    '6733aeef69db33c1ba87f45f',
-    '6733aeef69db33c1ba87f47a',
-    '6733aeef69db33c1ba87f48a',
-    '6733aeef69db33c1ba87f474',
-    '6733aeef69db33c1ba87f462',
-  ];
 
   constructor(private fetchService: FetchProductService) {
     this.productsData = [];
@@ -25,7 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchService
-      .fetchProductByIds(this.productsIds)
+      .getFeaturedProducts()
       .subscribe((fetchData) => {
         if (fetchData) {
          this.productsData = fetchData.data.products

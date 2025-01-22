@@ -105,4 +105,21 @@ export class FetchProductService {
         })
       );
   }
+
+  getFeaturedProducts() {
+    return this.http
+      .get<any>('https://back-duos.onrender.com/api/products/featured')
+      .pipe(
+        catchError((error) => {
+          // Log the error or handle it
+          // console.error('Error fetching products:', error);
+          // Optionally transform the error into a more user-friendly message
+          const errorMessage =
+            error?.error?.message ||
+            'Failed to fetch products. Please try again later.';
+          // Return an observable with an error
+          return throwError(() => new Error(errorMessage));
+        })
+      );
+  }
 }
