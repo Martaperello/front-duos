@@ -28,7 +28,9 @@ export class AuthService {
       .post<AuthResponseData>('https://back-duos.onrender.com/api/users/login', {
         email,
         password,
-      })
+      },
+      { withCredentials: true}
+    )
       .pipe(catchError(this.handleError));
   }
 
