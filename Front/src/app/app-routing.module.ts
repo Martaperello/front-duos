@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: () => import('./Auth/auth.module').then(m => m.AuthModule),
     data: { hideLayout: true},
   },
-  { path: 'admin',
+  { path: 'test',
     loadChildren: () => import('./Admin/admin.module').then(m => m.AdminModule),
  
     data: { hideLayout: false }, },
