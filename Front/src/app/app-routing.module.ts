@@ -10,15 +10,16 @@ const routes: Routes = [
     loadChildren: () => import('./Auth/auth.module').then(m => m.AuthModule),
     data: { hideLayout: true},
   },
+  { path: 'admin',
+    loadChildren: () => import('./Admin/admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AdminAuthGuard],
+    data: { hideLayout: false }, },
   {path: '',
   loadChildren: () => import('./Content/content.module').then(m => m.ContentModule),
   canActivate: [AuthGuard], 
   data: { hideLayout: false},
-},
-  { path: 'admin',
-     loadChildren: () => import('./Admin/admin/admin.module').then(m => m.AdminModule),
-     canActivate: [AdminAuthGuard],
-     data: { hideLayout: false }, }
+}
+ 
 ];
 
 @NgModule({
