@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   { path: 'admin',
     loadChildren: () => import('./Admin/admin.module').then(m => m.AdminModule),
-    anActivate: [AdminAuthGuard],
+    canActivate: [AdminAuthGuard],
     data: { hideLayout: false }, },
   {path: '',
   loadChildren: () => import('./Content/content.module').then(m => m.ContentModule),
