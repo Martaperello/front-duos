@@ -71,6 +71,18 @@ checkAuth(): Observable<boolean> {
   isLoggedIn(): boolean {
     return this.isLoggedInStatus;
   }
+  checkAdmin(): Observable<boolean> {
+    return this.http
+      .get<{ status: string }>('https://back-duos.onrender.com/api/users/admin-check', {
+        withCredentials: true, // Ensures the cookie is sent with the request
+      })
+      .pipe(
+        map((response) => response.status === 'success'),
+        catchError(() => {
+          return [false]; // Return false in case of error
+        })
+      );
+  }
 
   private handleError(errorRes: HttpErrorResponse) {
     // console.log('testEroor', errorRes);
