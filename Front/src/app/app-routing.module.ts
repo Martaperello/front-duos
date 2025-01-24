@@ -18,7 +18,8 @@ const routes: Routes = [
   loadChildren: () => import('./Content/content.module').then(m => m.ContentModule),
   canActivate: [AuthGuard], 
   data: { hideLayout: false},
-}
+},
+  { path: 'test', loadChildren: () => import('./test/test.module').then(m => m.TestModule) }
  
 ];
 
