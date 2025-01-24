@@ -21,6 +21,7 @@ export class AuthService {
   //use behavior subjet instead of subject if you need to take the previous value;
   // user = new BehaviorSubject<User>(null);
   // private tokenExprationTimer: any;
+  private isLoggedInStatus = false;
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
@@ -48,6 +49,27 @@ export class AuthService {
         passwordConfirm,
       })
       .pipe(catchError(this.handleError));
+  }
+
+
+
+checkAuth(): Observable<boolean> {
+    return this.http.get<{ status: string }>('https://back-duos.onrender.com/api/users/auth-check', {
+      withCredentials: true, // Ensures the cookie is sent with the request
+    }).pipe(
+      map(response => {
+        this.isLoggedInStatus = response.status === 'success';
+        return this.isLoggedInStatus;
+      }),
+      catchError(() => {
+        this.isLoggedInStatus = false;
+        return [false]; // Return false in case of error
+      })
+    );
+  }
+
+  isLoggedIn(): boolean {
+    return this.isLoggedInStatus;
   }
 
   private handleError(errorRes: HttpErrorResponse) {

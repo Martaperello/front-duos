@@ -1,1 +1,3 @@
-<app-nav></app-nav> <router-outlet></router-outlet><app-footer></app-footer>
+<app-nav *ngIf="showLayout$ | async"></app-nav>
+<router-outlet></router-outlet>
+<app-footer *ngIf="showLayout$ | async"></app-footer>
