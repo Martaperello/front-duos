@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LayoutService } from './Shared/services/layout.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'duos';
+  showLayout$ = this.layoutService.showLayout$;
+  constructor(private layoutService: LayoutService) {}
 }
