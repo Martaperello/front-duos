@@ -11,7 +11,7 @@ const routes: Routes = [
     data: { hideLayout: true},
   },
   { path: 'admin',
-    loadChildren: () => import('./Admin/admin/admin.module').then(m => m.AdminModule),
+    loadChildren: () => import('./Admin/admin.module').then(m => m.AdminModule),
  
     data: { hideLayout: false }, },
   {path: '',
