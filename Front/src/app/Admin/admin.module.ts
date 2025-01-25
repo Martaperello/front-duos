@@ -6,6 +6,7 @@ import { SidebarComponent } from './parts/sidebar/sidebar.component';
 import { UsersComponent } from './sections/users/users.component';
 import { ProductsComponent } from './sections/products/products.component';
 import { OrdersComponent } from './sections/orders/orders.component';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -19,7 +20,8 @@ import { OrdersComponent } from './sections/orders/orders.component';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatIconModule
   ]
 })
 export class AdminModule { }
