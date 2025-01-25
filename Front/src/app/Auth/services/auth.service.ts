@@ -47,7 +47,8 @@ export class AuthService {
         email,
         password,
         passwordConfirm,
-      })
+      },
+      { withCredentials: true})
       .pipe(catchError(this.handleError));
   }
 
