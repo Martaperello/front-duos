@@ -13,6 +13,7 @@ import { loadZone } from 'zone.js/lib/zone';
 
 @Injectable({ providedIn: 'root' })
 export class FetchProductService {
+  private apiUrl = 'https://back-duos.onrender.com/api/products';
   constructor(private http: HttpClient) {}
 
   fetchProductByIds(productIds: String[]) {
@@ -121,5 +122,35 @@ export class FetchProductService {
           return throwError(() => new Error(errorMessage));
         })
       );
+  }
+   // Create a new product
+   createProduct(productData: any) {
+    return this.http.post(`${this.apiUrl}`, productData).pipe(
+      catchError((error) => this.handleError(error, 'Failed to create product'))
+    );
+  }
+
+  // Update a product
+  updateProduct(productId: string, productData: any) {
+    return this.http.put(`${this.apiUrl}/${productId}`, productData).pipe(
+      catchError((error) =>
+        this.handleError(error, `Failed to update product with ID: ${productId}`)
+      )
+    );
+  }
+
+  // Delete a product
+  deleteProduct(productId: string) {
+    return this.http.delete(`${this.apiUrl}/${productId}`).pipe(
+      catchError((error) =>
+        this.handleError(error, `Failed to delete product with ID: ${productId}`)
+      )
+    );
+  }
+
+
+  private handleError(error: any, defaultMessage: string) {
+    const errorMessage = error?.error?.message || defaultMessage;
+    return throwError(() => new Error(errorMessage));
   }
 }

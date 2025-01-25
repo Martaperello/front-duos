@@ -1,0 +1,16 @@
+.admin-layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .sidebar-container{
+    width: 17%;
+  }
+  .content {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #faf3f3;
+    padding: 20px;
+  }

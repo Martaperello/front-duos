@@ -1,0 +1,51 @@
+/* Sidebar styles */
+.w3-sidebar {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    /* position: fixed !important; */
+    z-index: 1;
+    overflow: auto;
+  }
+  
+  .w3-bar-block .w3-bar-item {
+    width: 100%;
+    display: block;
+    padding: 8px 16px;
+    text-align: left;
+    border: none;
+    white-space: normal;
+    float: none;
+    outline: 0;
+  }
+  
+  .w3-bar-block .w3-dropdown-hover,
+  .w3-bar-block .w3-dropdown-click {
+    width: 100%;
+  }
+  
+  .w3-bar-block .w3-dropdown-hover .w3-button,
+  .w3-bar-block .w3-dropdown-click .w3-button {
+    width: 100%;
+    text-align: left;
+    padding: 8px 16px;
+  }
+  
+  .w3-bar-item {
+    padding: 8px 16px;
+    float: left;
+    width: auto;
+    border: none;
+    display: block;
+    outline: 0;
+  }
+  
+  .w3-bar-block .w3-bar-item.w3-red {
+    background-color: #f44336; /* Active link background */
+    color: white; /* Active link text color */
+  }
+  
+  .w3-button:hover {
+    color: #000 !important;
+    background-color: #ccc !important;
+  }
