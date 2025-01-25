@@ -2,18 +2,25 @@
   <div class="container">
     <div class="duos__logo-container">
       <a routerLink="/">
-        <img src="assets/images/duos_logo.png" alt="Logo Principal"
-      /></a>
+        <img src="assets/images/duos_logo.png" alt="Logo Principal" />
+      </a>
     </div>
     <div class="duos__menu-container">
       <div class="duos__menu-container--element">
         <a routerLink="/shop" routerLinkActive="active" class="duos__normal-link"><span>Tienda</span></a>
       </div>
       <div class="duos__menu-container--element">
-        <a routerLink="/cart" routerLinkActive="active"  class="duos__normal-icon"><i class="material-icons">shopping_cart</i></a>
+        <a routerLink="/cart" routerLinkActive="active" class="duos__normal-icon"><i class="material-icons">shopping_cart</i></a>
       </div>
       <div class="duos__menu-container--element">
-        <a routerLink="/login" routerLinkActive="active"  class="duos__normal-icon"><i class="material-icons">person</i></a>
+        <a routerLink="/login" *ngIf="!isLoggedIn" routerLinkActive="active" class="duos__normal-icon">
+          <i class="material-icons">person</i>
+        </a>
+      </div>
+      <div class="duos__menu-container--element" *ngIf="isLoggedIn">
+        <button mat-button color="warn" (click)="logout()" class="duos__normal-button">
+          <i class="material-icons">logout</i> Logout
+        </button>
       </div>
     </div>
   </div>

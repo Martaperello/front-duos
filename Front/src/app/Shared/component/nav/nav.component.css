@@ -50,6 +50,15 @@
   transition: all 0.4s ease-out;
 }
 
+.duos__normal-button {
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #da9f5b;
+}
+
 @media (max-width: 540px) {
   .duos__menu-container {
     gap: 1.4rem;

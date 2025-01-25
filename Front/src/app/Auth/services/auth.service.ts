@@ -84,6 +84,12 @@ checkAuth(): Observable<boolean> {
       );
   }
 
+  logout() {
+    return this.http.get('https://back-duos.onrender.com/api/users/logout', {
+      withCredentials: true, // Ensures the cookie is cleared
+    });
+  }
+
   private handleError(errorRes: HttpErrorResponse) {
     // console.log('testEroor', errorRes);
     let errorMessage = 'An unknown error ocurred';
