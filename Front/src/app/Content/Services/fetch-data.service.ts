@@ -133,7 +133,7 @@ export class FetchProductService {
 
   // Update a product
   updateProduct(productId: string, productData: any) {
-    return this.http.put(`${this.apiUrl}/${productId}`, productData).pipe(
+    return this.http.put<ApiProductResponse>(`${this.apiUrl}/${productId}`, productData).pipe(
       catchError((error) =>
         this.handleError(error, `Failed to update product with ID: ${productId}`)
       )

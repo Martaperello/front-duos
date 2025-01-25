@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
+import { EditProductDialogComponent } from './parts/edit-product-dialog/edit-product-dialog.component';
 
 
 
@@ -24,7 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
     UsersComponent,
     ProductsComponent,
     OrdersComponent,
-    CreateProductDialogComponent
+    CreateProductDialogComponent,
+    EditProductDialogComponent
   ],
   imports: [
     CommonModule,

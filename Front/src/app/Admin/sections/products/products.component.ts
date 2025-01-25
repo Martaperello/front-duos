@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FetchProductService } from '../../../Content/Services/fetch-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProductDialogComponent } from '../../parts/create-product-dialog/create-product-dialog.component';
+import { EditProductDialogComponent } from '../../parts/edit-product-dialog/edit-product-dialog.component';
 
 
 
@@ -53,7 +54,20 @@ export class ProductsComponent implements OnInit {
 
 
   editProduct(product: any) {
-    alert(`Edit functionality for ${product.title} is not implemented yet.`);
+    const dialogRef = this.dialog.open(EditProductDialogComponent, {
+      width: '600px',
+      data: { product }, // Pass the product data to the dialog
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Update the product in the table
+        const index = this.products.findIndex((p) => p._id === result._id);
+        if (index > -1) {
+          this.products[index] = result;
+        }
+      }
+    });
   }
 
   openCreateProductDialog() {

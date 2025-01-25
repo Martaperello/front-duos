@@ -1,0 +1,7 @@
+.ingredient-group{
+    display: flex;
+  }
+  
+  .add-ingredient__button{
+    margin-bottom: 30px;
+  }
