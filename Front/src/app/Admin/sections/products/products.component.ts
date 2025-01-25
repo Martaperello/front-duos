@@ -51,10 +51,7 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  editProduct(product: any) {
-    alert(`Edit functionality for ${product.title} is not implemented yet.`);
-  }
-  
+
   editProduct(product: any) {
     alert(`Edit functionality for ${product.title} is not implemented yet.`);
   }
