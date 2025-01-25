@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
 import {
   ApiGetResponse,
+  ApiProductResponse,
   ApiResponse,
   CartApiResponse,
   CartItems,
@@ -125,7 +126,7 @@ export class FetchProductService {
   }
    // Create a new product
    createProduct(productData: any) {
-    return this.http.post(`${this.apiUrl}`, productData).pipe(
+    return this.http.post<ApiProductResponse>(`${this.apiUrl}`, productData).pipe(
       catchError((error) => this.handleError(error, 'Failed to create product'))
     );
   }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchProductService } from '../../../Content/Services/fetch-data.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateProductDialogComponent } from '../../parts/create-product-dialog/create-product-dialog.component';
 
 
 
@@ -12,7 +14,7 @@ export class ProductsComponent implements OnInit {
   products: any[] = [];
   message: string | null = null;
 
-  constructor(private productService: FetchProductService) {}
+  constructor(private productService: FetchProductService, private dialog: MatDialog) {}
 
   ngOnInit() {
     this.loadProducts();
@@ -52,5 +54,22 @@ export class ProductsComponent implements OnInit {
   editProduct(product: any) {
     alert(`Edit functionality for ${product.title} is not implemented yet.`);
   }
+  
+  editProduct(product: any) {
+    alert(`Edit functionality for ${product.title} is not implemented yet.`);
+  }
+
+  openCreateProductDialog() {
+    const dialogRef = this.dialog.open(CreateProductDialogComponent, {
+      width: '600px',
+    });
+  
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Refresh the product list or update the table
+        this.products.push(result);
+      }
+    });
+}
 }
 

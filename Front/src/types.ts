@@ -75,3 +75,10 @@ export interface PopulatedCartData {
   };
   status: string;
 }
+
+export interface ApiProductResponse {
+  status: string;
+  data: {
+    product:Product;
+  };
+}
